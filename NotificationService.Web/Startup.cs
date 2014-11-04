@@ -1,10 +1,9 @@
 ﻿using Microsoft.Owin;
+using Microsoft.Owin.Extensions;
 using NotificationService.Web;
 using NotificationService.Web.App_Start;
 using Owin;
 using System.Web.Http;
-using Microsoft.Owin.Extensions;
-using Swashbuckle.Application;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace NotificationService.Web

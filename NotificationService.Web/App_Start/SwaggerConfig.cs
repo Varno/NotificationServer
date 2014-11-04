@@ -2,9 +2,6 @@ using Notification.Core.Models;
 using NotificationService.Web.App_Start;
 using Swashbuckle.Application;
 using System.Web.Http;
-using WebActivatorEx;
-
-//[assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
 namespace NotificationService.Web.App_Start
 {
@@ -40,7 +37,7 @@ namespace NotificationService.Web.App_Start
 
         protected static string GetXmlCommentsPath()
         {
-            var result = System.String.Format(@"{0}\bin\WebApiDescriptoin.XML", System.AppDomain.CurrentDomain.BaseDirectory);
+            var result = System.String.Format(@"{0}\bin\WebApiDescription.xml", System.AppDomain.CurrentDomain.BaseDirectory);
             return result;
         }
     }

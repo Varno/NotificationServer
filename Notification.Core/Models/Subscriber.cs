@@ -6,7 +6,11 @@ namespace Notification.Core.Models
     /// </summary>
     public class Subscriber : Participant
     {
-        public Subscriber(Guid id, string name) : base(id, name)
+        public Subscriber()
+        {
+        }
+
+        internal Subscriber(Guid id, string name) : base(id, name)
         {
         }
     }

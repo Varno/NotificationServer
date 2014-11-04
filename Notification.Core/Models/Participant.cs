@@ -17,10 +17,36 @@ namespace Notification.Core.Models
         /// </summary>
         public string Name { get; protected set; }
 
-        public Participant(Guid id, string name)
+        internal Participant()
+        {
+        }
+
+        internal Participant(Guid id, string name)
         {
             this.Id = id;
             this.Name = name;
+        }
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        protected virtual void Init()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
+        /// <summary>
+        /// Builds the specified identifier.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public static T Build<T>(string name) where T: Participant, new()
+        {
+            var result = new T();
+            result.Name = name;
+            result.Init();
+            return result;
         }
     }
 }

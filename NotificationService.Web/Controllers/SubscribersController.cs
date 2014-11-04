@@ -51,24 +51,28 @@ namespace NotificationService.Web.Controllers
         /// <summary>
         /// Add new subscriber
         /// </summary>
-        /// <param name="subscriber">subscriber Model</param>
-        /// <remarks>Insert new subscriber</remarks>
+        /// <param name="name">The name.</param>
+        /// <param name="groupIds">The group id collection (separetad by ','). </param>
+        /// <returns></returns>
+        /// <remarks>
+        /// Insert new subscriber
+        /// </remarks>
         /// <response code="400">Bad request</response>
         /// <response code="500">Internal Server Error</response>
         [Route("Subscriber")]
         [ResponseType(typeof(Subscriber))]
-        [ResponseType(typeof(Participant))]
-        public IHttpActionResult Post(Subscriber subscriber)
+        public IHttpActionResult Post([FromUri]string name, [FromUri]IEnumerable<string> groupIds)
         {
-            if (!ModelState.IsValid && subscriber != null)
+            if (!ModelState.IsValid && !string.IsNullOrEmpty(name))
                 return BadRequest(ModelState);
 
             var existSubscriber = repositary
-                .GetList(s => s.Name.Equals(subscriber.Name, StringComparison.OrdinalIgnoreCase))
+                .GetList(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
             if (existSubscriber != null)
                 return BadRequest("Subscriber already exists");
 
+            var subscriber = Participant.Build<Subscriber>(name);
             repositary.Add(subscriber);
             return Created(new Uri("api/SubscriberByName", UriKind.Relative), subscriber);
         }
