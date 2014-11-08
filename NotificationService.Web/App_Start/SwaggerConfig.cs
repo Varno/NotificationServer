@@ -37,7 +37,7 @@ namespace NotificationService.Web.App_Start
 
         protected static string GetXmlCommentsPath()
         {
-            var result = System.String.Format(@"{0}\bin\WebApiDescription.xml", System.AppDomain.CurrentDomain.BaseDirectory);
+            var result = System.String.Format(@"{0}\App_Data\WebApiDescription.xml", System.AppDomain.CurrentDomain.BaseDirectory);
             return result;
         }
     }
